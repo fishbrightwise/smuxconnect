@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--Materialize CSS Link-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <script src="./js/main.js"></script> 
-        <title>SMUX Connect</title>
-    </head>
-    <body>
-        <p>Hello World</p>
-        <p>Test</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Materialize CSS Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="./js/main.js"></script> 
+    <script type="text/javascript" src="./js/validation.js"></script> 
+    <title>SMUX Connect</title>
+</head>
+<body>
+    <!-- Login form -->
+    <section class="module">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 col-sm-offset-1 mb-sm-40">
+                    <h4 class="font-alt">Login</h4>
+                    <hr class="divider-w mb-10">
+                        <input class="form-control" id="username" type="text" placeholder="Username"/>
+                        <input class="form-control" id="password" type="password" placeholder="Password"/>
+                        <button type="button" class="btn btn-round btn-b" onclick="validateForm()" value="login">Login</button>
+                    <div class="form-group"><a href="">Forgot Password?</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </body>
-    <!--Materialize CSS JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+<!--Materialize CSS JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>

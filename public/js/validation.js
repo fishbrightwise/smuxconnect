@@ -15,9 +15,21 @@ function validateForm() {
 }
 
 // Register validation
-var email = document.forms['regForm']['email'];
-var username = document.forms['regForm']['username'];
-var password = document.forms['regForm']['password'];
-var password_confirm = document.forms['regForm']['confirmPass'];
-var name_error = document.getElementById('name_error');
-// Add your custom validation logic here
+function createUser() {
+    let email = document.getElementById('email').value;
+    let name = document.getElementById('name').value;
+    let pass = document.getElementById('pass').value;
+    let cfmpass = document.getElementById('cfmpass').value;
+
+    // Validaton
+
+    // Axios POST request
+    axios.post('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
+        email: email,
+        name: name,
+        password: pass
+    })
+    .then(() => {
+        alert('Account created successfully');
+    });
+}

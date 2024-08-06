@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="./js/main.js"></script> 
-    <script src="./js/validation.js"></script> 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script> 
+    <script type="text/javascript" src="./js/validation.js"></script> 
     <title>SMUX Connect</title>
 </head>
 <body>
@@ -17,24 +18,24 @@
                 <div class="col-sm-5">
                     <h4 class="font-alt">Register</h4>
                     <hr class="divider-w mb-10">
-                    <form class="form" name="regForm" onsubmit="return Validate();" action="index_shop.html" method="post">
+                    <form class="form" name="regForm" method="post">
                         <div class="form-group">
-                            <input class="form-control" id="Email" type="text" name="email" placeholder="Email"/>
+                            <input class="form-control" id="email" type="text" name="email" placeholder="Email"/>
                             <div id="email_error"></div>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" id="RegUser" type="text" name="username" placeholder="Username"/>
+                            <input class="form-control" id="name" type="text" name="name" placeholder="Name"/>
                             <div id="name_error"></div>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" id="RegPass" type="password" name="password" placeholder="Password"/>
+                            <input class="form-control" id="pass" type="password" name="pass" placeholder="Password"/>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" id="confirmPass" type="password" name="confirmPass" placeholder="Re-enter Password"/>
+                            <input class="form-control" id="cfmpass" type="password" name="cfmpass" placeholder="Re-enter Password"/>
                             <div id="password_error"></div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-block btn-round btn-b" type="submit" value="register">Register</button>
+                            <button class="btn btn-block btn-round btn-b" type="button" value="register" onclick="createUser()">Register</button>
                         </div>
                     </form>
                 </div>

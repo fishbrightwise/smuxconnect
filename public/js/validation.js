@@ -13,11 +13,9 @@ function validateForm() {
                 window.location.replace('home.html');
                 return;
             }
-            else {
-                document.getElementById('errors').innerHTML = 'Invalid username or password';
-                return;
-            }
         }
+        document.getElementById('errors').innerHTML = 'Invalid username or password';
+        return;
     });
 }
 
@@ -35,6 +33,7 @@ function createUser() {
         email: email,
         name: name,
         password: pass,
+        connection: {'dummy': 'dummy'}
     })
     .then((response) => {
         const id = response.data.name;
@@ -42,13 +41,13 @@ function createUser() {
         axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
         .then((response) => {
             const data = response.data;
-            let temp_obj = {};
+            let temp_arr = [];
             for (const key in data) {
-                temp_obj[key] = 0;
+                temp_arr.push(key)
             }
             // Assign items to user
             axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + id + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
-                inventory: temp_obj
+                inventory: temp_arr
             });
             alert('Account created successfully');
         });

@@ -5,8 +5,14 @@ async function getItems() {
         bingo.innerHTML += `
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">${key}</span>
+                    <span class="card-title">${response.data.inventory[key]}</span>
                 </div>
             </div>`;
     }
+};
+
+async function getQuestion() {
+    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk');
+    let qns = document.getElementById('question');
+    qns.innerHTML += `<p>${response.data[localStorage.getItem("target")]}</p>`;
 };

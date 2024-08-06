@@ -20,31 +20,52 @@
         const qrCodeSuccessCallback = (result) => {
             /* handle success */
             if (result.substring(0, 4) === "SMUX") {
-                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/inventory.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
                 .then(response => {
                     const data = response.data;
-                    for (const key in data) {
-                        if ((key === result.substring(4)) && (data[key] == 0)) {
-                            target = key;
-                            localStorage.setItem("target", target);
+                    let arr = data.inventory;
+                    let arrCount = arr.length;
+                    const connections = data.connection;
+                    if (connections) {
+                        for (const key in connections) {
+                            if (key === result.substring(4)) {
+                                alert("You have already connected with this user. Please try again.");
+                                return;
+                            }
                         }
                     }
-                    axios.put('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/inventory/' + target + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', 1)
-                });
+                    const randomIndex = Math.floor(Math.random() * arrCount);
+                    const randomValue = arr[randomIndex];
+                    localStorage.setItem("target", randomValue);
+                    arr.splice(randomIndex, 1);
+                    axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
+                        inventory: arr
+                    })
+                    .then(response => {
+                        axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/connection.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
+                            [result.substring(4)]: result
+                        })
+                        .then(response => {
+                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+                            .then(response => {
+                                const data = response.data;
+                                for (const key in data) {
+                                    if (key === localStorage.getItem("target")) {
+                                        window.location.href = 'question.html';
+                                    }
+                                }
+                            });
+                        });
+                    });
+                })
             }
-            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
-            .then(response => {
-                const data = response.data;
-                for (const key in data) {
-                    if (key === localStorage.getItem("target")) {
-                        console.log(data[key]);
-                    }
-                }
-            });
+            else {
+                alert("Invalid QR Code. Please try again.");
+            }
         };
 
         // QR Scanner Camera parameters (Frames per Second, Size of Scanning Box)
-        const config = { fps: 60, qrbox: { width: 250, height: 250 } };
+        const config = { fps: 5, qrbox: { width: 250, height: 250 } };
 
         // If you want to prefer back camera
         html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Materialize CSS Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script> 
+    <!--HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro-->
+    <script type="text/javascript" src="https://unpkg.com/html5-qrcode"></script> 
+    <title>SMUX Connect</title>
+<body>
+    <div id="reader"></div>
+
+    <script>
+        // HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro.
+        const html5QrCode = new Html5Qrcode("reader");
+        const qrCodeSuccessCallback = (result) => {
+            /* handle success */
+            alert(result);
+        };
+        // QR Scanner Camera parameters (Frames per Second, Size of Scanning Box)
+        const config = { fps: 60, qrbox: { width: 250, height: 250 } };
+
+        // If you want to prefer back camera
+        html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+
+    </script>
+</body>
+<!--Materialize CSS JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>

@@ -9,7 +9,16 @@
     <title>SMUX Connect</title>
 </head>
 <body>
-    <p>Hello World</p>
+    <div class="container">
+        <p>Hello world</p>
+      </div>
+
+      <script>
+        axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+        .then((response) => {
+            console.log(response);
+        })
+      </script>
 </body>
 <!--Materialize CSS JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

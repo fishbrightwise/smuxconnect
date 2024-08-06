@@ -33,9 +33,23 @@ function createUser() {
     axios.post('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
         email: email,
         name: name,
-        password: pass
+        password: pass,
     })
-    .then(() => {
-        alert('Account created successfully');
+    .then((response) => {
+        const id = response.data.name;
+        // Axios GET request for game items allocation
+        axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+        .then((response) => {
+            const data = response.data;
+            let temp_obj = {};
+            for (const key in data) {
+                temp_obj[key] = 0;
+            }
+            // Assign items to user
+            axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + id + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
+                inventory: temp_obj
+            });
+            alert('Account created successfully');
+        });
     });
 }

@@ -1,6 +1,6 @@
 // Login validation
 function validateForm() {
-    var user = document.getElementById('username').value;
+    var user = document.getElementById('email').value;
     var pass = document.getElementById('password').value;
     
     axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
@@ -8,12 +8,13 @@ function validateForm() {
         const data = response.data;
         for (const key in data) {
             if (data[key].email === user && data[key].password === pass) {
+                window.sessionStorage.setItem('user', key);
                 alert('Login successful');
                 window.location.replace('home.html');
                 return;
             }
             else {
-                alert("Login was unsuccessful, please check your username and password");
+                document.getElementById('errors').innerHTML = 'Invalid username or password';
                 return;
             }
         }

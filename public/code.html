@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Materialize CSS Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <!--QR Code Generator from https://github.com/davidshimjs/qrcodejs--> 
+    <script src="./js/qrcode.min.js"></script>
+    <title>SMUX Connect</title>
+</head>
+<body>
+    <div class="container">
+        <div id="qrcode"></div>
+    </div>
+
+    <script>
+        // QR Code Generator from https://github.com/davidshimjs/qrcodejs
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "SMUX" + sessionStorage.getItem("user"),
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+<!--Materialize CSS JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>

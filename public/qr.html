@@ -14,12 +14,35 @@
     <div id="reader"></div>
 
     <script>
+        let target = '';
         // HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro.
         const html5QrCode = new Html5Qrcode("reader");
         const qrCodeSuccessCallback = (result) => {
             /* handle success */
-            alert(result);
+            if (result.substring(0, 4) === "SMUX") {
+                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/inventory.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+                .then(response => {
+                    const data = response.data;
+                    for (const key in data) {
+                        if ((key === result.substring(4)) && (data[key] == 0)) {
+                            target = key;
+                            localStorage.setItem("target", target);
+                        }
+                    }
+                    axios.put('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/inventory/' + target + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', 1)
+                });
+            }
+            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+            .then(response => {
+                const data = response.data;
+                for (const key in data) {
+                    if (key === localStorage.getItem("target")) {
+                        console.log(data[key]);
+                    }
+                }
+            });
         };
+
         // QR Scanner Camera parameters (Frames per Second, Size of Scanning Box)
         const config = { fps: 60, qrbox: { width: 250, height: 250 } };
 

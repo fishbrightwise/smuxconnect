@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="./css/spacing-helpers.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/config.js"></script> 
-    <script type="text/javascript" src="./js/main.js"></script> 
     <script type="text/javascript" src="./js/validation.js"></script> 
     <script type="text/javascript" src="./js/bingo.js"></script>
+    <script type="module" src="./js/main.mjs"></script> 
     <title>SMUX Connect</title>
 </head>
-<body onload="getItems(); loadName();">
+<body onload="getItems()">
     <ul class="sidenav" id="mySidenav">
         <li>
             <div class="user-view padding s-all-20">
@@ -33,7 +33,8 @@
 
     <nav>
         <div class="nav-wrapper grey darken-4">
-            <a class="brand-logo sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i> SMU<span class="deep-orange-text text-lighten">X</span> Connect</a>
+            <a class="sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i></a>
+            <span class="brand-logo"> SMU<span class="deep-orange-text text-lighten">X</span> Connect</span>
         </div>
     </nav>
 

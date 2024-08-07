@@ -1,2 +1,0 @@
-Link Realtime Database to Web App. Allow for Axios POST and GET of user data for Register and Login respectively.
-Create validation on Login and Register Pages.

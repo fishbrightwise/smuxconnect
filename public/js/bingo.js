@@ -1,5 +1,5 @@
 async function getItems() {
-    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + config.API_KEY);
+    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY);
     let table = document.getElementById('bingo');
     for (let key in response.data.bingo) {
         if (response.data.bingo[key] === 0) {
@@ -26,7 +26,7 @@ async function getItems() {
 };
 
 async function getQuestion() {
-    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + config.API_KEY);
+    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY);
     let qns = document.getElementById('question');
     qns.innerHTML += `<p>${response.data[localStorage.getItem("target")]}</p>`;
 };

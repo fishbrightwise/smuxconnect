@@ -21,7 +21,3 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-// Find a way to at least hide the auth key.
-// const dbUrl = 'https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app';
-// const apiKey = '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk';

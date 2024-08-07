@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/spacing-helpers.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="./js/config.js"></script> 
     <script type="text/javascript" src="./js/main.js"></script> 
     <!--HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro-->
     <script type="text/javascript" src="https://unpkg.com/html5-qrcode"></script> 
@@ -52,7 +53,7 @@
             /* handle success */
             shouldPauseVideo = true;
             if (result.substring(0, 4) === "SMUX") {
-                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + config.API_KEY)
                 .then(response => {
                     const data = response.data;
                     let obj = data.bingo;
@@ -73,16 +74,16 @@
                     localStorage.setItem("target", randomValue);
                     arr.splice(randomIndex, 1);
                     obj[randomValue] = 1;
-                    axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
+                    axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + config.API_KEY, {
                         inventory: arr,
                         bingo: obj
                     })
                     .then(response => {
-                        axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/connection.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
+                        axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/connection.json?auth=' + config.API_KEY, {
                             [result.substring(4)]: result
                         })
                         .then(response => {
-                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
+                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + config.API_KEY)
                             .then(response => {
                                 const data = response.data;
                                 for (const key in data) {

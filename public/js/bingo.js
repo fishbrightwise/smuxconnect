@@ -1,13 +1,23 @@
 async function getItems() {
     const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk');
-    let bingo = document.getElementById('bingo');
-    for (let key in response.data.inventory) {
-        bingo.innerHTML += `
+    let table = document.getElementById('bingo');
+    for (let key in response.data.bingo) {
+        if (response.data.bingo[key] === 0) {
+            table.innerHTML += `
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">${response.data.inventory[key]}</span>
+                    <span class="card-title">${key}</span>
                 </div>
             </div>`;
+        }
+        else {
+            table.innerHTML += `
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Done!</span>
+                </div>
+            </div>`;
+        }
     }
 };
 

@@ -12,16 +12,20 @@
     <title>SMUX Connect</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="margin: 40px">
         <div id="qrcode"></div>
+        <div>
+            <button class="btn btn-block btn-round btn-b blue darken-1" type="button" onclick="window.location.href='qr.html'">Qr Scanner</button>
+            <button class="btn btn-block btn-round btn-b lime accent-3" type="button" onclick="window.location.href='home.html'">Home</button>
+        </div>
     </div>
 
     <script>
         // QR Code Generator from https://github.com/davidshimjs/qrcodejs
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "SMUX" + sessionStorage.getItem("user"),
-            width: 128,
-            height: 128,
+            width: 500,
+            height: 500,
             colorDark : "#000000",
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H

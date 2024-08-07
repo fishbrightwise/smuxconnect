@@ -42,14 +42,23 @@ function createUser() {
         .then((response) => {
             const data = response.data;
             let temp_arr = [];
+            let temp_obj = {};
             for (const key in data) {
                 temp_arr.push(key)
+                temp_obj[key] = 0;
             }
             // Assign items to user
             axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + id + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
-                inventory: temp_arr
+                inventory: temp_arr,
+                bingo: temp_obj
             });
-            alert('Account created successfully');
+            alert('Account created successfully. You will be redirected back to the login page.');
+            window.location.replace('index.html');
         });
     });
+}
+
+function logout() {
+    window.sessionStorage.clear();
+    window.location.replace('index.html');
 }

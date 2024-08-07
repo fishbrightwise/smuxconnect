@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/main.js"></script> 
+    <script type="text/javascript" src="./js/validation.js"></script> 
     <script type="text/javascript" src="./js/bingo.js"></script>
     <title>SMUX Connect</title>
 </head>
 <body onload="getItems()">
     <div class="container">
         <div id="bingo"></div>
-      </div>
+        <div>
+            <button class="btn btn-block btn-round btn-b blue darken-1" type="button" onclick="window.location.href='qr.html'">Qr Scanner</button>
+            <button class="btn btn-block btn-round btn-b lime accent-3" type="button" onclick="window.location.href='code.html'">Qr Code</button>
+            <button class="btn btn-block btn-round btn-b red darken-4" type="button" onclick="logout()">Logout</button>
+        </div>
+    </div>
 </body>
 <!--Materialize CSS JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

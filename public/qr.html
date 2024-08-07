@@ -12,6 +12,10 @@
     <title>SMUX Connect</title>
 <body>
     <div id="reader"></div>
+    <div>
+        <button class="btn btn-block btn-round btn-b blue darken-1" type="button" onclick="window.location.href='code.html'">Qr Code</button>
+        <button class="btn btn-block btn-round btn-b lime accent-3" type="button" onclick="window.location.href='home.html'">Home</button>
+    </div>
 
     <script>
         let target = '';
@@ -19,10 +23,12 @@
         const html5QrCode = new Html5Qrcode("reader");
         const qrCodeSuccessCallback = (result) => {
             /* handle success */
+            shouldPauseVideo = true;
             if (result.substring(0, 4) === "SMUX") {
                 axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk')
                 .then(response => {
                     const data = response.data;
+                    let obj = data.bingo;
                     let arr = data.inventory;
                     let arrCount = arr.length;
                     const connections = data.connection;
@@ -30,6 +36,7 @@
                         for (const key in connections) {
                             if (key === result.substring(4)) {
                                 alert("You have already connected with this user. Please try again.");
+                                resume();
                                 return;
                             }
                         }
@@ -38,8 +45,10 @@
                     const randomValue = arr[randomIndex];
                     localStorage.setItem("target", randomValue);
                     arr.splice(randomIndex, 1);
+                    obj[randomValue] = 1;
                     axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
-                        inventory: arr
+                        inventory: arr,
+                        bingo: obj
                     })
                     .then(response => {
                         axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '/connection.json?auth=AIzaSyCVi6loRRJgyBOFnoOvuTDCasJVAQYNyNk', {
@@ -57,10 +66,11 @@
                             });
                         });
                     });
-                })
+                });
             }
             else {
                 alert("Invalid QR Code. Please try again.");
+                resume();
             }
         };
 

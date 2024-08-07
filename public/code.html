@@ -5,27 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/spacing-helpers.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
     <!--QR Code Generator from https://github.com/davidshimjs/qrcodejs--> 
     <script src="./js/qrcode.min.js"></script>
     <title>SMUX Connect</title>
+    <style>
+        #qrcode {
+            margin-top: 5%;
+        }
+    </style>
 </head>
-<body>
-    <div class="container" style="margin: 40px">
-        <div id="qrcode"></div>
-        <div>
-            <button class="btn btn-block btn-round btn-b blue darken-1" type="button" onclick="window.location.href='qr.html'">Qr Scanner</button>
-            <button class="btn btn-block btn-round btn-b lime accent-3" type="button" onclick="window.location.href='home.html'">Home</button>
+<body onload="loadName();">
+    <ul class="sidenav" id="mySidenav">
+        <li>
+            <div class="user-view padding s-all-20">
+                <div class="background">
+                    <img src="https://static.vecteezy.com/system/resources/previews/008/207/514/non_2x/abstract-technology-background-free-vector.jpg">
+                </div>
+                <a href="#" id="username"></a>
+            </div>
+            <div class="collection s-all-20">
+                <a href="home.html" class="collection-item sidenav-close">Home</a>
+                <a href="qr.html" class="collection-item sidenav-close">QR Scanner</a>
+                <a href="code.html" class="collection-item sidenav-close black-text" style="pointer-events: none; cursor: default;">QR Code</a>
+                <a href="index.html" class="collection-item sidenav-close red-text text-darken-2">Logout</a>
+        </li>
+    </ul>
+
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <a class="brand-logo sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i> SMU<span class="deep-orange-text text-lighten">X</span> Connect</a>
         </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" id="qrcode"></div>
+        </div>
+        
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var side = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(side);
+          });
+        
+        document.getElementById('username').innerHTML = `<h4 class="white-text my3">Welcome, ${sessionStorage.getItem('name')}</h4>` ;
+
         // QR Code Generator from https://github.com/davidshimjs/qrcodejs
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "SMUX" + sessionStorage.getItem("user"),
-            width: 500,
-            height: 500,
+            width: 350,
+            height: 350,
             colorDark : "#000000",
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H

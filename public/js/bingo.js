@@ -4,17 +4,21 @@ async function getItems() {
     for (let key in response.data.bingo) {
         if (response.data.bingo[key] === 0) {
             table.innerHTML += `
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">${key}</span>
+            <div class="col s3 m4 l6 xl12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">${key}</span>
+                    </div>
                 </div>
             </div>`;
         }
         else {
             table.innerHTML += `
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">Done!</span>
+            <div class="col s3 m4 l6 xl12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Done!</span>
+                    </div>
                 </div>
             </div>`;
         }

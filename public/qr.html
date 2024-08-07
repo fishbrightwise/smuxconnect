@@ -5,19 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/spacing-helpers.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/main.js"></script> 
     <!--HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro-->
     <script type="text/javascript" src="https://unpkg.com/html5-qrcode"></script> 
     <title>SMUX Connect</title>
-<body>
+<body onload="loadName();">
+    <ul class="sidenav" id="mySidenav">
+        <li>
+            <div class="user-view padding s-all-20">
+                <div class="background">
+                    <img src="https://static.vecteezy.com/system/resources/previews/008/207/514/non_2x/abstract-technology-background-free-vector.jpg">
+                </div>
+                <a href="#" id="username"></a>
+            </div>
+            <div class="collection s-all-20">
+                <a href="home.html" class="collection-item sidenav-close">Home</a>
+                <a href="qr.html" class="collection-item sidenav-close black-text" style="pointer-events: none; cursor: default;">QR Scanner</a>
+                <a href="code.html" class="collection-item sidenav-close">QR Code</a>
+                <a href="index.html" class="collection-item sidenav-close red-text text-darken-2">Logout</a>
+        </li>
+    </ul>
+
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <a class="brand-logo sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i> SMU<span class="deep-orange-text text-lighten">X</span> Connect</a>
+        </div>
+    </nav>
+
     <div id="reader"></div>
-    <div>
-        <button class="btn btn-block btn-round btn-b blue darken-1" type="button" onclick="window.location.href='code.html'">Qr Code</button>
-        <button class="btn btn-block btn-round btn-b lime accent-3" type="button" onclick="window.location.href='home.html'">Home</button>
-    </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var side = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(side);
+          });
+        
+        document.getElementById('username').innerHTML = `<h4 class="white-text my3">Welcome, ${sessionStorage.getItem('name')}</h4>` ;
+
         let target = '';
         // HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro.
         const html5QrCode = new Html5Qrcode("reader");
@@ -75,7 +102,7 @@
         };
 
         // QR Scanner Camera parameters (Frames per Second, Size of Scanning Box)
-        const config = { fps: 5, qrbox: { width: 250, height: 250 } };
+        const config = { fps: 5, qrbox: { width: 500, height: 500 } };
 
         // If you want to prefer back camera
         html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);

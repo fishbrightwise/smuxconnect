@@ -9,6 +9,7 @@ function validateForm() {
         for (const key in data) {
             if (data[key].email === user && data[key].password === pass) {
                 window.sessionStorage.setItem('user', key);
+                window.sessionStorage.setItem('name', data[key].name);
                 alert('Login successful');
                 window.location.replace('home.html');
                 return;

@@ -10,21 +10,47 @@
     <script type="text/javascript" src="./js/validation.js"></script> 
     <script type="module" src="./js/main.mjs"></script> 
     <title>SMUX Connect</title>
+    <style>
+        .index{
+            background-image: url('./img/SMUXploration Activities.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        .box{
+            background-color: white;
+            float: right;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
 </head>
-<body>
+<body class="index">
     <!-- Login form -->
-    <section class="module">
-        <div class="container">
+    <section class="module" style="margin-left: auto; margin-right:auto;">
+        <div class="container-fluid" style="height: 100%; width: auto;">
             <div class="row">
-                <div class="col-sm-5 col-sm-offset-1 mb-sm-40">
-                    <h4 class="font-alt">Login</h4>
+                <div class="col m12 l4 offset-l8 box" style="padding: 4% 35px 5% 35px; float:right;">
+                    <div class="center-align">
+                        <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 80%; height: auto; margin-top: 10px;">
+                    </div>
+                    <h5 class="font-alt">Welcome to SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</h5>
+                    <blockquote>Login with your registered Email Address</blockquote>
                     <hr class="divider-w mb-10">
-                        <input class="form-control" id="email" type="text" placeholder="Username"/>
+                        <input class="form-control" id="email" type="text" placeholder="Email Address"/>
                         <input class="form-control" id="password" type="password" placeholder="Password"/>
-                        <button type="button" class="btn btn-round btn-b" onclick="validateForm()" value="login">Login</button>
-                        <button type="button" class="btn btn-round btn-b pink darken-1" onclick="window.location.href='register.html'" value="register">Register</button>
-                        <div id="errors"></div>
+                        <div class="row">
+                            <div class="col s6">
+                                <a type="button" class="btn btn-round btn-b deep-orange lighten-1 z-depth-0" onclick="validateForm()" value="login" style="width: 100%;"><span class="grey-text text-darken-4">Login</span></a>
+                            </div>
+                            <div class="col s6">
+                                <a type="button" class="btn btn-round btn-b grey darken-4 z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%;"><span class="deep-orange-text text-lighten-1">Register</span></a>
+                            </div>
+                        </div>
                 </div>
+                <div class="col-sm-5 col-sm-offset-1 mb-sm-40" style="margin-top:5px" id="errors"></div>
             </div>
         </div>
     </section>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/config.js"></script> 
     <script type="text/javascript" src="./js/validation.js"></script> 
@@ -43,13 +44,13 @@
                         <input class="form-control" id="password" type="password" placeholder="Password"/>
                         <div class="row">
                             <div class="col s6">
-                                <a type="button" class="btn btn-round btn-b deep-orange lighten-1 z-depth-0" onclick="validateForm()" value="login" style="width: 100%;"><span class="grey-text text-darken-4">Login</span></a>
+                                <button type="button" class="btn btn-round btn-b deep-orange lighten-1 z-depth-0" onclick="validateForm()" value="login" style="width: 100%;"><span class="grey-text text-darken-4">Login</span></button>
                             </div>
                             <div class="col s6">
-                                <a type="button" class="btn btn-round btn-b grey darken-4 z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%;"><span class="deep-orange-text text-lighten-1">Register</span></a>
+                                <button type="button" class="btn btn-round btn-b grey darken-4 z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%;"><span class="deep-orange-text text-lighten-1">Register</span></button>
                             </div>
                         </div>
-                        <div class="col-sm-5 col-sm-offset-1 mb-sm-40 red-text" style="margin-top:5px" id="errors"></div>
+                        <blockquote class="col-sm-5 col-sm-offset-1 mb-sm-40 red-text" style="margin-top:5px" id="errors"></blockquote>
                 </div>
             </div>
         </div>

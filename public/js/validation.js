@@ -10,12 +10,11 @@ function validateForm() {
             if (data[key].email === user && data[key].password === pass) {
                 window.sessionStorage.setItem('user', key);
                 window.sessionStorage.setItem('name', data[key].name);
-                alert('Login successful');
                 window.location.replace('home.html');
                 return;
             }
         }
-        document.getElementById('errors').innerHTML = 'Invalid username or password';
+        document.getElementById('errors').innerHTML = 'Invalid Email Address or Password';
         return;
     });
 }
@@ -60,6 +59,18 @@ function createUser() {
 }
 
 function logout() {
-    window.sessionStorage.clear();
-    window.location.replace('index.html');
+    sessionStorage.clear();   
+    loggedOutCheck(); 
+}
+
+function loggedOutCheck() {
+    if (window.sessionStorage.getItem('user') === null) {
+        window.location.replace('index.html');
+    }
+}
+
+function loggedInCheck () {
+    if (window.sessionStorage.getItem('user') !== null) {
+        window.location.replace('home.html');
+    }
 }

@@ -27,17 +27,17 @@
         }
     </style>
 </head>
-<body class="index">
+<body class="index" onload="loggedInCheck()">
     <!-- Login form -->
     <section class="module" style="margin-left: auto; margin-right:auto;">
         <div class="container-fluid" style="height: 100%; width: auto;">
             <div class="row">
-                <div class="col m12 l4 offset-l8 box" style="padding: 4% 35px 5% 35px; float:right;">
+                <div class="col m12 l4 offset-l8 box" style="padding: 2% 35px 5% 35px; float:right;">
                     <div class="center-align">
                         <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 80%; height: auto; margin-top: 10px;">
                     </div>
-                    <h5 class="font-alt">Welcome to SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</h5>
-                    <blockquote>Login with your registered Email Address</blockquote>
+                    <h5 class="font-alt">Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span></b> Connect</i></h5>
+                    <blockquote>Login with your registered Email Address</blockquote>   
                     <hr class="divider-w mb-10">
                         <input class="form-control" id="email" type="text" placeholder="Email Address"/>
                         <input class="form-control" id="password" type="password" placeholder="Password"/>
@@ -49,8 +49,8 @@
                                 <a type="button" class="btn btn-round btn-b grey darken-4 z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%;"><span class="deep-orange-text text-lighten-1">Register</span></a>
                             </div>
                         </div>
+                        <div class="col-sm-5 col-sm-offset-1 mb-sm-40 red-text" style="margin-top:5px" id="errors"></div>
                 </div>
-                <div class="col-sm-5 col-sm-offset-1 mb-sm-40" style="margin-top:5px" id="errors"></div>
             </div>
         </div>
     </section>

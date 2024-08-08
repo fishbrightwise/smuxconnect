@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="./css/spacing-helpers.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/config.js"></script> 
+    <script type="text/javascript" src="./js/validation.js"></script>
     <script type="text/javascript" src="./js/bingo.js"></script>
     <script type="module" src="./js/main.mjs"></script> 
     <title>SMUX Connect</title>
 </head>
-<body onload="getQuestion()">
+<body onload="getQuestion(); loggedOutCheck()">
     <ul class="sidenav" id="mySidenav">
         <li>
             <div class="user-view padding s-all-20">
@@ -26,14 +27,14 @@
                 <a href="home.html" class="collection-item sidenav-close">Home</a>
                 <a href="qr.html" class="collection-item sidenav-close">QR Scanner</a>
                 <a href="code.html" class="collection-item sidenav-close">QR Code</a>
-                <a href="index.html" class="collection-item sidenav-close red-text text-darken-2">Logout</a>
+                <a onclick="logout()" class="collection-item sidenav-close red-text text-darken-2">Logout</a>
         </li>
     </ul>
 
     <nav>
         <div class="nav-wrapper grey darken-4">
             <a class="sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i></a>
-            <span class="brand-logo"> SMU<span class="deep-orange-text text-lighten">X</span> Connect</span>
+            <span class="brand-logo"> <b>SMU<span class="deep-orange-text text-lighten">X</span></b> Connect</span>        
         </div>
     </nav>
 

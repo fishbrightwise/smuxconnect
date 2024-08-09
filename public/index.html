@@ -40,17 +40,24 @@
                     <h5 class="font-alt">Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span></b> Connect</i></h5>
                     <blockquote>Login with your registered Email Address</blockquote>   
                     <hr class="divider-w mb-10">
-                        <input class="form-control" id="email" type="text" placeholder="Email Address"/>
-                        <input class="form-control" id="password" type="password" placeholder="Password"/>
+                        <div class="input-field">
+                            <input class="form-control validate" id="email" type="text"/>
+                            <label for="email">Email Address</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control validate" id="password" type="password"/>
+                            <label for="password">Password</label>    
+                        </div>
                         <div class="row">
                             <div class="col s6">
-                                <button type="button" class="btn btn-round btn-b deep-orange lighten-1 z-depth-0" onclick="validateForm()" value="login" style="width: 100%;"><span class="grey-text text-darken-4">Login</span></button>
+                                <button type="button" class="btn btn-round btn-b deep-orange lighten-1 waves-effect waves-light z-depth-0" onclick="validateForm()" value="login" style="width: 100%;"><span class="grey-text text-darken-4">Login</span></button>
                             </div>
                             <div class="col s6">
-                                <button type="button" class="btn btn-round btn-b grey darken-4 z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%;"><span class="deep-orange-text text-lighten-1">Register</span></button>
+                                <button type="button" class="btn btn-round btn-b grey darken-3 waves-effect waves-light z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%"><span class="deep-orange-text text-lighten-1">Register</span></button>
                             </div>
                         </div>
                         <blockquote class="col-sm-5 col-sm-offset-1 mb-sm-40 red-text" style="margin-top:5px" id="errors"></blockquote>
+                        <blockquote class="col-sm-5 col-sm-offset-1 mb-sm-40 light-green-text text-darken-3" style="margin-top:5px" id="success"></blockquote></blockquote>  
                 </div>
             </div>
         </div>

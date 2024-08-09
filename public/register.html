@@ -32,41 +32,70 @@
     <section class="module">
         <div class="container-fluid">
             <div class="row">
-                <div class="col s12 m12 l4 offset-l4 box" style="padding:2% 5% 2% 5%">
+                <div class="col s12 m12 l6 offset-l3 box" style="padding:2% 5% 2% 5%">
                     <div class="center-align">
                         <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 80%; height: auto; margin-top: 10px;">
                     </div>
                     <h5 class="font-alt">Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span></b> Connect</i></h5>
                     <blockquote>Register an account with us</blockquote>   
                     <hr class="divider-w mb-10">
-                        <div class="form-group">
-                            <input class="form-control" id="email" type="text" name="email" placeholder="Email"/>
-                            <div id="email_error"></div>
+                        <div class="form-group input-field">
+                            <input class="form-control validate" id="email" type="text" name="email"/>
+                            <label for="email">Email</label>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" id="name" type="text" name="name" placeholder="Name"/>
-                            <div id="name_error"></div>
+                        <div class="form-group input-field">
+                            <input class="form-control validate" id="name" type="text" name="name"/>
+                            <label for="name">Name</label>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" id="pass" type="password" name="pass" placeholder="Password"/>
+                        <div class="form-group input-field">
+                            <input class="form-control validate" id="dob" type="date" name="dob"/>
+                            <label for="dob">Date of Birth</label>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" id="cfmpass" type="password" name="cfmpass" placeholder="Re-enter Password"/>
-                            <div id="password_error"></div>
+                        <div class="form-group input-field">
+                            <select multiple id="club" name="club" class="validate" onchange="removeDefault(this);">
+                                <option selected disabled>Choose your club(s)</option>
+                                <option value="MC">Management Committee</option>
+                                <option value="Alpine">Alpine</option>
+                                <option value="Bike">Bike</option>
+                                <option value="Dive">Dive</option>
+                                <option value="Kayak">Kayak</option>
+                                <option value="Skate">Skate</option>
+                                <option value="Trek">Trek</option>
+                                <option value="XSeed">XSeed</option>
+                              </select>
+                              <label for="club">Club/Team</label>
+                        </div>
+                        <div class="form-group input-field">
+                            <input class="form-control validate" id="pass" type="password" name="pass"/>
+                            <label for="pass">Password</label>
+                        </div>
+
+                        <div class="form-group input-field">
+                            <input class="form-control validate" id="cfmpass" type="password" name="cfmpass"/>
+                            <label for="cfmpass">Re-enter Password</label>
                         </div>
                         <div class="row">
                             <div class="col s6">
-                                <button class="btn btn-round btn-b deep-orange lighten-1 z-depth-0" type="button" value="register" onclick="createUser()"  style="width: 100%;">Register</button>
+                                <button class="btn btn-round btn-b deep-orange lighten-1 waves-effect waves-light z-depth-0" type="button" value="register" onclick="createUser()"  style="width: 100%;">Register</button>
                             </div>
                             <div class="col s6">
-                                <button class="btn btn-round btn-b grey darken-4 z-depth-0" type="button" onclick="window.location.href='index.html'"  style="width: 100%;"><span class="deep-orange-text text-lighten-1">Back to Login</span></button>
+                                <button class="btn btn-round btn-b grey darken-3 waves-effect waves-light z-depth-0" type="button" onclick="window.location.href='index.html'"  style="width: 100%"><span class="deep-orange-text text-lighten-1">Back to Login</span></button>
                             </div>
                         </div>
-                        <blockquote class="col-sm-5 col-sm-offset-1 mb-sm-40 red-text" style="margin-top:5px" id="errors"></blockquote>        
+                        <blockquote class="col-sm-5 col-sm-offset-1 mb-sm-40 red-text" style="margin-top:5px" id="errors"></blockquote>    
+                        <blockquote class="col-sm-5 col-sm-offset-1 mb-sm-40 light-green-text text-darken-3" style="margin-top:5px" id="success"></blockquote></blockquote>    
                 </div>
+
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
 </body>
 <!--Materialize CSS JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -6,17 +6,27 @@ function validateForm() {
     axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=' + firebaseAPIKey.API_KEY)
     .then((response) => {
         const data = response.data;
-        for (const key in data) {
-            decrypted = decryptPassword(data[key].password, email);
-            if (data[key].email === email && decrypted === pass) {
-                window.sessionStorage.setItem('user', key);
-                window.sessionStorage.setItem('name', data[key].name);
-                window.location.replace('home.html');
-                return;
-            }
+        if (email === '' || pass === '') {
+            document.getElementById('errors').innerHTML = 'Please fill in all fields';
+            return;
         }
-        document.getElementById('errors').innerHTML = 'Invalid Email Address or Password';
-        return;
+        else {
+            for (const key in data) {
+                if (data[key].email === email) {
+                    decrypted = decryptPassword(data[key].password, email);
+                    if (decrypted === pass) {
+                        window.sessionStorage.setItem('user', key);
+                        window.sessionStorage.setItem('name', data[key].name);
+                        document.getElementById('errors').innerHTML = '';
+                        document.getElementById('success').innerHTML = 'Login Successful.';
+                        setTimeout(sendToHome, 1500);
+                        return;
+                    }
+                }
+            }
+            document.getElementById('errors').innerHTML = 'Invalid Email Address or Password';
+            return;
+        }
     });
 }
 
@@ -24,12 +34,14 @@ function validateForm() {
 function createUser() {
     let email = document.getElementById('email').value;
     let name = document.getElementById('name').value;
+    let dob = document.getElementById('dob').value
+    let club = Array.from(document.getElementById('club').selectedOptions).map(option => option.value);
     let pass = document.getElementById('pass').value;
     let cfmpass = document.getElementById('cfmpass').value;
     let errors = '';
 
     // Validaton
-    if (email === '' || name === '' || pass === '' || cfmpass === '') {
+    if (email === '' || name === '' || dob === '' || (club.length === 0 || club[0] === 'Choose your club(s)') || pass === '' || cfmpass === '') {
         errors = 'Please fill in all fields';
     }
     else if (pass !== cfmpass) {
@@ -46,6 +58,8 @@ function createUser() {
         axios.post('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=' + firebaseAPIKey.API_KEY, {
             email: email,
             name: name,
+            dob: dob,
+            club: club,
             password: encrypted,
             connection: {'dummy': 'dummy'}
         })
@@ -66,8 +80,9 @@ function createUser() {
                     inventory: temp_arr,
                     bingo: temp_obj
                 });
-                alert('Account created successfully. You will be redirected back to the login page.');
-                window.location.replace('index.html');
+                document.getElementById('errors').innerHTML = '';
+                document.getElementById('success').innerHTML = 'Account created successfully. You will be redirected back to the login page.'
+                setTimeout(sendToIndex, 3000);
             });
         });
     }
@@ -80,13 +95,13 @@ function logout() {
 
 function loggedOutCheck() {
     if (window.sessionStorage.getItem('user') === null) {
-        window.location.replace('index.html');
+        sendToIndex();
     }
 }
 
 function loggedInCheck () {
     if (window.sessionStorage.getItem('user') !== null) {
-        window.location.replace('home.html');
+        sendToHome();
     }
 }
 
@@ -98,4 +113,17 @@ function encryptPassword(password, email) {
 // Password Decryption. Uses Crypto.js
 function decryptPassword(password, email) {
     return CryptoJS.AES.decrypt(password, email).toString(CryptoJS.enc.Utf8); // Verifies identifier, the user's email to unlock password.
+}
+
+function sendToHome() {
+    window.location.replace('home.html');
+}
+
+function sendToIndex() {
+    window.location.replace('index.html');
+}
+
+function removeDefault(s) {
+    const elOptions = s.querySelectorAll('option')
+    elOptions[0].selected  = false;
 }

@@ -14,12 +14,12 @@
     <script type="module" src="./js/main.mjs"></script> 
     <title>SMUX Connect</title>
 </head>
-<body onload="getItems(); loggedOutCheck()">
+<body onload="getItems(); loggedOutCheck()" style="background-image: url('./img/Paper Background.jpg');">
     <ul class="sidenav" id="mySidenav">
         <li>
             <div class="user-view padding s-all-20">
                 <div class="background">
-                    <img src="./img/SMUXploration Welfare.png">
+                    <img src="./img/SMUXploration Welfare.png" style="background-image: url('./img/Paper Background.jpg');">
                 </div>
                 <a href="#" id="username"></a>
             </div>
@@ -40,6 +40,12 @@
 
     <div class="container">
         <div class="row" id="bingo"></div>
+        <div class="card">
+            <div class="card-content">
+                <p>Welcome to the Bingo Board! <br>Scan other people's QR Codes to complete squares and earn points!</p>
+            </div>
+        </div>
+
     </div>
 
     <script>

@@ -54,35 +54,44 @@ function createUser() {
     }
     else {
         let encrypted = encryptPassword(pass, email)
-        // Axios POST request
-        axios.post('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=' + firebaseAPIKey.API_KEY, {
-            email: email,
-            name: name,
-            dob: dob,
-            club: club,
-            password: encrypted,
-            connection: {'dummy': 'dummy'}
-        })
+        let stickerArr = [];
+        axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY)
         .then((response) => {
-            const id = response.data.name;
-            // Axios GET request for game items allocation
-            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY)
+            const itemCount = Object.keys(response.data).length;
+            for (let i = 0; i < itemCount; i++) {
+                stickerArr.push(Math.floor(Math.random() * itemCount) + 1);
+            }
+            // Axios POST request
+            axios.post('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=' + firebaseAPIKey.API_KEY, {
+                email: email,
+                name: name,
+                dob: dob,
+                club: club,
+                password: encrypted,
+                connection: {'dummy': 'dummy'},
+                stickers: stickerArr
+            })
             .then((response) => {
-                const data = response.data;
-                let temp_arr = [];
-                let temp_obj = {};
-                for (const key in data) {
-                    temp_arr.push(key)
-                    temp_obj[key] = 0;
-                }
-                // Assign items to user
-                axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + id + '.json?auth=' + firebaseAPIKey.API_KEY, {
-                    inventory: temp_arr,
-                    bingo: temp_obj
+                const id = response.data.name;
+                // Axios GET request for game items allocation
+                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY)
+                .then((response) => {
+                    const data = response.data;
+                    let temp_arr = [];
+                    let temp_obj = {};
+                    for (const key in data) {
+                        temp_arr.push(key)
+                        temp_obj[key] = 0;
+                    }
+                    // Assign items to user
+                    axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + id + '.json?auth=' + firebaseAPIKey.API_KEY, {
+                        inventory: temp_arr,
+                        bingo: temp_obj
+                    });
+                    document.getElementById('errors').innerHTML = '';
+                    document.getElementById('success').innerHTML = 'Account created successfully. You will be redirected back to the login page.'
+                    setTimeout(sendToIndex, 3000);
                 });
-                document.getElementById('errors').innerHTML = '';
-                document.getElementById('success').innerHTML = 'Account created successfully. You will be redirected back to the login page.'
-                setTimeout(sendToIndex, 3000);
             });
         });
     }

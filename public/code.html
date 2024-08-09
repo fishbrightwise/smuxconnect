@@ -15,12 +15,14 @@
     <script src="./js/qrcode.min.js"></script>
     <title>SMUX Connect</title>
     <style>
-        #qrcode {
-            margin-top: 5%;
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
-<body onload="loggedOutCheck()">
+<body onload="loggedOutCheck()" style="background-image: url('./img/Paper Background.jpg');">
     <ul class="sidenav" id="mySidenav">
         <li>
             <div class="user-view padding s-all-20">
@@ -42,17 +44,24 @@
             <a class="sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i></a>
             <span class="brand-logo"><b>SMU<span class="deep-orange-text text-lighten">X</span></b> Connect</span>        
         </div>
-    </nav>
+    </nav>  
 
     <div class="container">
-        <div class="center-align">
-            <div class="row">
-                <div class="col" id="qrcode"></div>
+        <div class="card">
+            <div class="card-image" style="padding: 10%">
+                <div id="qrcode"></div> 
+            </div>
+            <div class="card-content">
+                <p>This is your own personal QR Code! <br>Let others scan your QR Code, and scan other's QR Codes to connect with them!</p>
             </div>
         </div>
+    </div>
 
         
     </div>
+
+    <div class="card">
+      </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -65,8 +74,8 @@
         // QR Code Generator from https://github.com/davidshimjs/qrcodejs
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "SMUX" + sessionStorage.getItem("user"),
-            width: 350,
-            height: 350,
+            width: 300,
+            height: 300,
             colorDark : "#000000",
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H

@@ -1,13 +1,15 @@
 async function getItems() {
     const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY);
     let table = document.getElementById('bingo');
+    let counter = 0;
     for (let key in response.data.bingo) {
         if (response.data.bingo[key] === 0) {
+            
             table.innerHTML += `
             <div class="col s3 m4 l6 xl12">
                 <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">${key}</span>
+                    <div class="card-image">
+                        <img src="./img/emo${response.data.stickers[counter]}.jpg">
                     </div>
                 </div>
             </div>`;
@@ -16,12 +18,13 @@ async function getItems() {
             table.innerHTML += `
             <div class="col s3 m4 l6 xl12">
                 <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">Done!</span>
+                    <div class="card-image">
+                        <img src="./img/Done.png">
                     </div>
                 </div>
             </div>`;
         }
+        counter++;
     }
 };
 

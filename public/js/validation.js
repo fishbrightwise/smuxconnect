@@ -38,6 +38,8 @@ function createUser() {
     let club = Array.from(document.getElementById('club').selectedOptions).map(option => option.value);
     let pass = document.getElementById('pass').value;
     let cfmpass = document.getElementById('cfmpass').value;
+    let tnc = document.getElementById('tnc').checked;
+    console.log(tnc);
     let errors = '';
 
     // Validaton
@@ -46,6 +48,9 @@ function createUser() {
     }
     else if (pass !== cfmpass) {
         errors = 'Passwords do not match';
+    }
+    else if (!tnc) {
+        errors = 'Please accept the Terms & Conditions';
     }
 
     if (errors !== '') {

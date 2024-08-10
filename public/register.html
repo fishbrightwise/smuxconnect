@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/config.js"></script> 
@@ -34,9 +35,8 @@
             <div class="row">
                 <div class="col s12 m12 l6 offset-l3 box" style="padding:2% 5% 2% 5%">
                     <div class="center-align">
-                        <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 70%; height: auto; margin-top: 10px;">
+                        <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 55%; height: auto; margin-top: 10px;">
                     </div>
-                    <h5 class="font-alt">Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span></b> Connect</i></h5>
                     <blockquote>Register an account with us</blockquote>   
                     <hr class="divider-w mb-10">
                         <div class="form-group input-field">
@@ -74,6 +74,38 @@
                             <input class="form-control validate" id="cfmpass" type="password" name="cfmpass"/>
                             <label for="cfmpass">Re-enter Password</label>
                         </div>
+                        <div class="form-group" style="margin-bottom: 3%">
+                            <!-- Modal Trigger -->
+                            <label>
+                                <input id="tnc" type="checkbox" name="tnc"/>
+                                <span>I have read the <a data-target="tncModal" class="modal-trigger">Terms and Conditions</a></span>
+                            </label>
+                            
+
+                            <!-- Modal Structure -->
+                            <div id="tncModal" class="modal">
+                                <div class="modal-content">
+                                    <h4>Terms and Conditions</h4>
+                                    <p><b>1. Introduction</b> <br>Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i>! By using our services, you agree to comply with the following terms and conditions. Please read them carefully.</p>
+                                    <p><b>2. User Information</b> <br>When you sign up for <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i>, we collect certain personal information, including your email address, date of birth, and name. We handle this data in accordance with our privacy policy.</p>
+                                    <p><b>3. Use of Information</b> <br>
+                                        <ul>
+                                            <li><i class="tiny material-icons">play_arrow</i> You agree to provide accurate and up-to-date information during registration.</li>
+                                            <li><i class="tiny material-icons">play_arrow</i> We use your email address for account-related communication and notifications.</li>
+                                            <li><i class="tiny material-icons">play_arrow</i> Your date of birth helps us verify your age and tailor our services appropriately.</li>
+                                            <li><i class="tiny material-icons">play_arrow</i> Your name is used for personalization within the app.</li>
+                                        </ul></p>
+                                    <p><b>4. Privacy and Security</b> <br>We take privacy seriously. Your data is stored securely and never shared with third parties without your consent. You are responsible for maintaining the confidentiality of your account credentials.</p>
+                                    <p><b>5. Termination</b> <br> We reserve the right to terminate accounts that violate our terms or engage in prohibited activities. You can request to delete your account through us at any time.</p>
+                                    <p><b>6. Prohibited Activities</b> <br> Do not use <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i> for illegal purposes or to harm others. Do not impersonate others or engage in fraudulent behavior.</p>
+                                    <p><b>7. Limitation of Liability</b> <br> We are not liable for any damages resulting from your use of <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i>. Use the app at your own risk.</p>
+                                    <p><b>8. Changes to Terms</b> <br>We may update these terms periodically. Check back for any changes.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">I have read the Terms and Conditions</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col s6">
                                 <button class="btn btn-round btn-b deep-orange lighten-1 waves-effect waves-light z-depth-0" type="button" value="register" onclick="createUser()"  style="width: 100%;">Register</button>
@@ -93,6 +125,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {dismissable: false});
         });
     </script>
 </body>

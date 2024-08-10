@@ -70,3 +70,6 @@ node_modules/
 
 # config.js file that holds the API key.
 config.js
+
+# personal to-do list.
+todo.txt

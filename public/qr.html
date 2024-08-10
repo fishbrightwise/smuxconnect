@@ -14,6 +14,7 @@
     <!--HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro-->
     <script type="text/javascript" src="https://unpkg.com/html5-qrcode"></script> 
     <title>SMUX Connect</title>
+</head>
 <body onload="loggedOutCheck()">
     <ul class="sidenav" id="mySidenav" style="background-image: url('./img/Paper Background.jpg');">
         <li>
@@ -31,14 +32,14 @@
         </li>
     </ul>
 
-    <nav>
-        <div class="nav-wrapper grey darken-4">
-            <a class="sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i></a>
-            <span class="brand-logo"><b>SMU<span class="deep-orange-text text-lighten">X</span></b> Connect</span>
-        </div>
-    </nav>
+        <nav class="nav-check">
+            <div class="nav-wrapper grey darken-4">
+                <a class="sidenav-trigger show-on-large" data-target="mySidenav"><i class="material-icons">menu</i></a>
+                <span class="brand-logo"><b>SMU<span class="deep-orange-text text-lighten">X</span></b> Connect</span>
+            </div>
+        </nav>
 
-    <div id="reader" style="top: 0; bottom: 0"></div>
+    <div id="reader"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -49,6 +50,16 @@
         document.getElementById('username').innerHTML = `<h4 class="white-text my3">Welcome, ${sessionStorage.getItem('name')}</h4>` ;
 
         let target = '';
+        let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
+            let minEdgePercentage = 0.7; // 70%
+            let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+            let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+            return {
+                width: qrboxSize,
+                height: qrboxSize
+            };
+        }
+
         // HTML5 QR Code Scanner from https://www.youtube.com/watch?v=19eo39lqpLM&t=79s which links to documentation https://scanapp.org/html5-qrcode-docs/docs/intro.
         const html5QrCode = new Html5Qrcode("reader");
         const qrCodeSuccessCallback = (result) => {
@@ -106,7 +117,13 @@
         };
 
         // QR Scanner Camera parameters (Frames per Second, Size of Scanning Box)
-        const config = { fps: 5, qrbox: { width: 250, height: 250 } };
+        const height = window.screen.height;
+        const width = window.screen.width;
+        divElement = document.querySelector(".nav-check");
+        elemHeight = divElement.offsetHeight;
+        const newHeight = height - elemHeight;
+        const ar = width / newHeight
+        const config = { fps: 5, qrbox: qrboxFunction, aspectRatio: ar };
 
         // If you want to prefer back camera
         html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);

@@ -123,7 +123,7 @@
         elemHeight = divElement.offsetHeight;
         const newHeight = height - elemHeight;
         const ar = width / newHeight
-        const config = { fps: 5, qrbox: qrboxFunction, aspectRatio: ar };
+        const config = { fps: 144, qrbox: qrboxFunction, aspectRatio: ar };
 
         // If you want to prefer back camera
         html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);

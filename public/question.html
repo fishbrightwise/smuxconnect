@@ -46,10 +46,16 @@
     </nav>
 
     <div class="container">
-        <div class="card center-align" style="width:100%;">
+        <div class="card center-align"  style="padding:0 5% 0 5%">
             <div class="card-content">
-                Congratulations on connecting with <span id="targetName"></span>
-                <div id="question"></div>        
+                <h5><b>Congratulations!</b></h5>
+                <p>You have connected with <b><span id="targetName"></b>!</span></p>
+                <p>Here's a question from us to help break the ice between the two of you! <br><br></p>
+                <h5 id="question"></h5><br><br>
+                <p>Once you're done, you may press 'Continue' to claim your points for your hard work!</p>
+            </div>
+            <div class="card-action">
+                <a onclick="clearQuestion()">Continue</a>
             </div>
         </div>
 

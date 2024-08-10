@@ -31,11 +31,17 @@ async function getItems() {
 async function getQuestion() {
     const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY);
     let qns = document.getElementById('question');
-    qns.innerHTML += `<p>${response.data[localStorage.getItem("target")]}</p>`;
+    qns.innerHTML += `<b><i>"${response.data[localStorage.getItem("target")]}"</i></b>`;
 };
 
 async function getConnectedName() {
     const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + localStorage.getItem("targetName") + '.json?auth=' + firebaseAPIKey.API_KEY);
     let name = response.data.name;
     document.getElementById('targetName').innerText = name;
+}
+
+function clearQuestion() {
+    localStorage.removeItem("target");
+    localStorage.removeItem("targetName");
+    window.location.href = "home.html";
 }

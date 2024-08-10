@@ -6,7 +6,7 @@ async function getItems() {
         if (response.data.bingo[key] === 0) {
             
             table.innerHTML += `
-            <div class="col s3 m4 l6 xl12">
+            <div class="col s6 m4 l3">
                 <div class="card">
                     <div class="card-image">
                         <img src="./img/emo${response.data.stickers[counter]}.jpg">
@@ -16,7 +16,7 @@ async function getItems() {
         }
         else {
             table.innerHTML += `
-            <div class="col s3 m4 l6 xl12">
+            <div class="col s6 m4 l3">
                 <div class="card">
                     <div class="card-image">
                         <img src="./img/Done.png">

@@ -33,3 +33,9 @@ async function getQuestion() {
     let qns = document.getElementById('question');
     qns.innerHTML += `<p>${response.data[localStorage.getItem("target")]}</p>`;
 };
+
+async function getConnectedName() {
+    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + localStorage.getItem("targetName") + '.json?auth=' + firebaseAPIKey.API_KEY);
+    let name = response.data.name;
+    document.getElementById('targetName').innerText = name;
+}

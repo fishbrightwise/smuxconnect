@@ -13,13 +13,20 @@
     <script type="text/javascript" src="./js/bingo.js"></script>
     <script type="module" src="./js/main.mjs"></script> 
     <title>SMUX Connect</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
-<body onload="getQuestion(); loggedOutCheck()" style="background-image: url('./img/Paper Background.jpg');">
+<body onload="getQuestion(); loggedOutCheck(); getConnectedName()" style="background-image: url('./img/Paper Background.jpg');">
     <ul class="sidenav" id="mySidenav">
         <li>
             <div class="user-view padding s-all-20">
                 <div class="background">
-                    <img src="./img/SMUXploration Welfare.png">
+                    <img src="./img/SMUXploration Banner.png">                
                 </div>
                 <a href="#" id="username"></a>
             </div>
@@ -39,8 +46,13 @@
     </nav>
 
     <div class="container">
-        <div id="question"></div>
-        <button type="button" class="btn btn-round btn-b green darken-1" onclick="window.location.href='home.html'" value="continue">Continue</button>
+        <div class="card center-align" style="width:100%;">
+            <div class="card-content">
+                Congratulations on connecting with <span id="targetName"></span>
+                <div id="question"></div>        
+            </div>
+        </div>
+
       </div>
 
       <script>

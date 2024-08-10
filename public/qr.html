@@ -19,7 +19,7 @@
         <li>
             <div class="user-view padding s-all-20">
                 <div class="background">
-                    <img src="./img/SMUXploration Welfare.png" style="background-image: url('./img/Paper Background.jpg');">
+                    <img src="./img/SMUXploration Banner.png">                
                 </div>
                 <a href="#" id="username"></a>
             </div>
@@ -74,6 +74,7 @@
                     const randomIndex = Math.floor(Math.random() * arrCount);
                     const randomValue = arr[randomIndex];
                     localStorage.setItem("target", randomValue);
+                    localStorage.setItem("targetName", result.substring(4));
                     arr.splice(randomIndex, 1);
                     obj[randomValue] = 1;
                     axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY, {

@@ -2,8 +2,10 @@ async function getItems() {
     const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY);
     let table = document.getElementById('bingo');
     let counter = 0;
+    let points = 0;
 
     if (!response.data.inventory) {
+        points = Object.keys(response.data.bingo).length;
         document.getElementById('bingoBoard').innerHTML = `
             <div class="card">
                 <div class="card-image" style="margin: 5% 5% 0 5%">
@@ -12,12 +14,14 @@ async function getItems() {
                 <div class="card-content">
                     <p><b>Congratulations!</b> <br>You have completed the bingo board! Keep on connecting!</p>
                     <p>Here's a star for you!</p>
+                    <p id="points"></p>
                 </div>
             </div>
         `;
     }
     else {
         for (let key in response.data.bingo) {
+            points = (Object.keys(response.data.bingo).length) - response.data.inventory.length;
             if (response.data.bingo[key] === 0) {
                 table.innerHTML += `
                 <div class="col s6 m4 l3">
@@ -41,6 +45,7 @@ async function getItems() {
             counter++;
         }    
     }
+    document.getElementById('points').innerHTML = `<p>You have <b>${points}</b> point(s)!</p>`;
 };
 
 async function getQuestion() {

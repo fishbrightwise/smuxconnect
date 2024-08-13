@@ -26,6 +26,15 @@
             top: 0;
             bottom: 0;
         }
+        /* Materialize CSS input-field color editing */
+        .input-field input:focus + label {
+            color: #ff5424 !important;
+        }
+        /* Materialize CSS input-field underline color editing */
+        .row .input-field input:focus {
+            border-bottom: 1px solid #ff5424 !important;
+            box-shadow: 0 1px 0 0 #ff5424 !important
+        }
     </style>
 </head>
 <body onload="loggedInCheck()" class="index">
@@ -102,7 +111,7 @@
                                     <p><b>8. Changes to Terms</b> <br>We may update these terms periodically. Check back for any changes.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">I have read the Terms and Conditions</a>
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat deep-orange-text">Close</a>
                                 </div>
                             </div>
                         </div>

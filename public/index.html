@@ -26,6 +26,15 @@
             top: 0;
             bottom: 0;
         }
+        /* Materialize CSS input-field color editing */
+        .input-field input:focus + label {
+            color: #ff5424 !important;
+        }
+        /* Materialize CSS input-field underline color editing */
+        .row .input-field input:focus {
+            border-bottom: 1px solid #ff5424 !important;
+            box-shadow: 0 1px 0 0 #ff5424 !important
+        }
     </style>
 </head>
 <body class="index" onload="loggedInCheck()">

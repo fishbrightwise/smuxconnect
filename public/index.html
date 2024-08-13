@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/palate.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/config.js"></script> 
@@ -28,12 +29,17 @@
         }
         /* Materialize CSS input-field color editing */
         .input-field input:focus + label {
-            color: #ff5424 !important;
+            color: #e67e3c !important;
         }
         /* Materialize CSS input-field underline color editing */
         .row .input-field input:focus {
-            border-bottom: 1px solid #ff5424 !important;
-            box-shadow: 0 1px 0 0 #ff5424 !important
+            border-bottom: 1px solid #e67e3c !important;
+            box-shadow: 0 1px 0 0 #e67e3c !important
+        }
+        blockquote{
+            margin: 20px 0;
+            padding-left: 1.5rem;
+            border-left: 5px solid #e67e3c; /* Just change the color value and that's it*/
         }
     </style>
 </head>
@@ -46,7 +52,7 @@
                     <div class="center-align">
                         <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 80%; height: auto; margin-top: 10px;">
                     </div>
-                    <h5 class="font-alt">Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span></b> Connect</i></h5>
+                    <h5 class="font-alt smux-black-text">Welcome to <i><b>SMU<span class="smux-orange-text">X</span></b> Connect</i></h5>
                     <blockquote>Login with your registered Email Address</blockquote>   
                     <hr class="divider-w mb-10">
                         <div class="input-field">
@@ -59,7 +65,7 @@
                         </div>
                         <div class="row">
                             <div class="col s6">
-                                <button type="button" class="btn btn-round btn-b deep-orange lighten-1 waves-effect waves-light z-depth-0" onclick="validateForm()" value="login" style="width: 100%;">Login</button>
+                                <button type="button" class="btn btn-round btn-b orange darken-2 waves-effect z-depth-0" onclick="validateForm()" value="login" style="width: 100%;">Login</button>
                             </div>
                             <div class="col s6">
                                 <button type="button" class="btn btn-round btn-b grey darken-3 waves-effect waves-light z-depth-0" onclick="window.location.href='register.html'" value="register" style="width: 100%">Register</button>

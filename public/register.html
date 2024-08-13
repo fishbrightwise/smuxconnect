@@ -6,6 +6,7 @@
     <!--Materialize CSS Link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/palate.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./js/config.js"></script> 
@@ -28,12 +29,17 @@
         }
         /* Materialize CSS input-field color editing */
         .input-field input:focus + label {
-            color: #ff5424 !important;
+            color: #e67e3c !important;
         }
         /* Materialize CSS input-field underline color editing */
         .row .input-field input:focus {
-            border-bottom: 1px solid #ff5424 !important;
-            box-shadow: 0 1px 0 0 #ff5424 !important
+            border-bottom: 1px solid #e67e3c !important;
+            box-shadow: 0 1px 0 0 #e67e3c !important
+        }
+        blockquote{
+            margin: 20px 0;
+            padding-left: 1.5rem;
+            border-left: 5px solid #e67e3c; /* Just change the color value and that's it*/
         }
     </style>
 </head>
@@ -87,37 +93,38 @@
                             <!-- Modal Trigger -->
                             <label>
                                 <input id="tnc" type="checkbox" name="tnc"/>
-                                <span>I have read the <a data-target="tncModal" class="modal-trigger">Terms and Conditions</a></span>
+                                <span>I have read the <a data-target="tncModal" class="modal-trigger smux-orange-text">Terms and Conditions</a></span>
                             </label>
                             
 
                             <!-- Modal Structure -->
                             <div id="tncModal" class="modal">
                                 <div class="modal-content">
-                                    <h4>Terms and Conditions</h4>
-                                    <p><b>1. Introduction</b> <br>Welcome to <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i>! By using our services, you agree to comply with the following terms and conditions. Please read them carefully.</p>
-                                    <p><b>2. User Information</b> <br>When you sign up for <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i>, we collect certain personal information, including your email address, date of birth, and name. We handle this data in accordance with our privacy policy.</p>
-                                    <p><b>3. Use of Information</b> <br>
+                                    <h4 class="smux-black-text">Terms and Conditions</h4>
+                                    <p class="smux-black-text"><b>1. Introduction</b> <br>Welcome to <i><b>SMU<span class="smux-orange-text">X</span> Connect</b></i>! By using our services, you agree to comply with the following terms and conditions. Please read them carefully.</p>
+                                    <p class="smux-black-text"><b>2. User Information</b> <br>When you sign up for <i><b>SMU<span class="smux-orange-text">X</span> Connect</b></i>, we collect certain personal information, including your email address, date of birth, and name. We handle this data in accordance with our privacy policy.</p>
+                                    <p class="smux-black-text"><b>3. Use of Information</b> <br>
                                         <ul>
                                             <li><i class="tiny material-icons">play_arrow</i> You agree to provide accurate and up-to-date information during registration.</li>
                                             <li><i class="tiny material-icons">play_arrow</i> We use your email address for account-related communication and notifications.</li>
                                             <li><i class="tiny material-icons">play_arrow</i> Your date of birth helps us verify your age and tailor our services appropriately.</li>
                                             <li><i class="tiny material-icons">play_arrow</i> Your name is used for personalization within the app.</li>
-                                        </ul></p>
-                                    <p><b>4. Privacy and Security</b> <br>We take privacy seriously. Your data is stored securely and never shared with third parties without your consent. You are responsible for maintaining the confidentiality of your account credentials.</p>
-                                    <p><b>5. Termination</b> <br> We reserve the right to terminate accounts that violate our terms or engage in prohibited activities. You can request to delete your account through us at any time.</p>
-                                    <p><b>6. Prohibited Activities</b> <br> Do not use <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i> for illegal purposes or to harm others. Do not impersonate others or engage in fraudulent behavior.</p>
-                                    <p><b>7. Limitation of Liability</b> <br> We are not liable for any damages resulting from your use of <i><b>SMU<span class="deep-orange-text text-lighten-1">X</span> Connect</b></i>. Use the app at your own risk.</p>
-                                    <p><b>8. Changes to Terms</b> <br>We may update these terms periodically. Check back for any changes.</p>
+                                        </ul>
+                                    </p>
+                                    <p class="smux-black-text"><b>4. Privacy and Security</b> <br>We take privacy seriously. Your data is stored securely and never shared with third parties without your consent. You are responsible for maintaining the confidentiality of your account credentials.</p>
+                                    <p class="smux-black-text"><b>5. Termination</b> <br> We reserve the right to terminate accounts that violate our terms or engage in prohibited activities. You can request to delete your account through us at any time.</p>
+                                    <p class="smux-black-text"><b>6. Prohibited Activities</b> <br> Do not use <i><b>SMU<span class="smux-orange-text">X</span> Connect</b></i> for illegal purposes or to harm others. Do not impersonate others or engage in fraudulent behavior.</p>
+                                    <p class="smux-black-text"><b>7. Limitation of Liability</b> <br> We are not liable for any damages resulting from your use of <i><b>SMU<span class="smux-orange-text">X</span> Connect</b></i>. Use the app at your own risk.</p>
+                                    <p class="smux-black-text"><b>8. Changes to Terms</b> <br>We may update these terms periodically. Check back for any changes.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat deep-orange-text">Close</a>
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat orange-text text-darken-2">Close</a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s6">
-                                <button class="btn btn-round btn-b deep-orange lighten-1 waves-effect waves-light z-depth-0" type="button" value="register" onclick="createUser()"  style="width: 100%;">Register</button>
+                                <button class="btn btn-round btn-b orange darken-2 waves-effect waves-light z-depth-0" type="button" value="register" onclick="createUser()"  style="width: 100%;">Register</button>
                             </div>
                             <div class="col s6">
                                 <button class="btn btn-round btn-b grey darken-3 waves-effect waves-light z-depth-0" type="button" onclick="window.location.href='index.html'"  style="width: 100%">Back to Login</button>

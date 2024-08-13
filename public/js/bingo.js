@@ -45,7 +45,7 @@ async function getItems() {
             counter++;
         }    
     }
-    document.getElementById('points').innerHTML = `<p>You have <b>${points}</b> point(s)!</p>`;
+    document.getElementById('points').innerHTML = `<p>You have <span class="orange-text text-darken-2"><b>${points}</b></span> point(s)!</p>`;
 };
 
 async function getQuestion() {

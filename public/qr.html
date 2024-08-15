@@ -72,7 +72,7 @@
         const html5QrCode = new Html5Qrcode("reader");
         const qrCodeSuccessCallback = (result) => {
             /* handle success */
-            shouldPauseVideo = true;
+            html5QrCode.pause();
             if (result.substring(0, 4) === "SMUX") {
                 axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY)
                 .then(response => {
@@ -82,12 +82,11 @@
                     let arrCount = arr.length;
                     const connections = data.connection;
                     if (connections) {
-                        for (const key in connections) {
-                            if (key === result.substring(4)) {
-                                alert("You have already connected with this user. Please try again.");
-                                resume();
-                                return;
-                            }
+                        if (Object.keys(connections).includes(result.substring(4))) {
+                            alert("You have already connected with this user. Please try again.");
+                            window.location.reload();
+                            html5QrCode.resume();
+                            return;
                         }
                     }
                     const randomIndex = Math.floor(Math.random() * arrCount);
@@ -120,7 +119,8 @@
             }
             else {
                 alert("Invalid QR Code. Please try again.");
-                resume();
+                window.location.reload();
+                html5QrCode.resume();
             }
         };
 
@@ -131,7 +131,7 @@
         elemHeight = divElement.offsetHeight;
         const newHeight = height - elemHeight;
         const ar = width / newHeight
-        const config = { fps: 24, qrbox: qrboxFunction, aspectRatio: (width/height) };
+        const config = { fps: 1, qrbox: qrboxFunction, aspectRatio: (width/height) };
 
         // If you want to prefer back camera
         html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);

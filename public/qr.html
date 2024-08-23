@@ -104,14 +104,23 @@
                             [result.substring(4)]: result
                         })
                         .then(response => {
-                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item/' + sessionStorage.getItem("crewStatus") + '.json?auth=' + firebaseAPIKey.API_KEY)
+                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + result.substring(4) + '.json?auth=' + firebaseAPIKey.API_KEY)
                             .then(response => {
-                                const data = response.data;
-                                for (const key in data) {
-                                    if (key === localStorage.getItem("target")) {
-                                        window.location.href = 'question.html';
-                                    }
+                                if (response.data.alumni === true) {
+                                    localStorage.setItem("crewStatus", 'student');
                                 }
+                                else {
+                                    localStorage.setItem("crewStatus", 'alumni');
+                                }
+                                axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item/' + localStorage.getItem("crewStatus") + '.json?auth=' + firebaseAPIKey.API_KEY)
+                                .then(response => {
+                                    const data = response.data;
+                                    for (const key in data) {
+                                        if (key === localStorage.getItem("target")) {
+                                            window.location.href = 'question.html';
+                                        }
+                                    }
+                                });
                             });
                         });
                     });

@@ -49,7 +49,7 @@ async function getItems() {
 };
 
 async function getQuestion() {
-    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY);
+    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item/' + sessionStorage.getItem("crewStatus") + '.json?auth=' + firebaseAPIKey.API_KEY);
     let qns = document.getElementById('question');
     qns.innerHTML += `<b><i>"${response.data[localStorage.getItem("target")]}"</i></b>`;
 };

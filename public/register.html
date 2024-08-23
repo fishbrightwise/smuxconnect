@@ -48,9 +48,9 @@
     <section class="module">
         <div class="container-fluid">
             <div class="row">
-                <div class="col s12 m12 l6 offset-l3 box" style="padding:2% 5% 2% 5%">
+                <div class="col s12 m12 l6 offset-l3 box" style="padding:1% 5% 2% 5%">
                     <div class="center-align">
-                        <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 55%; height: auto; margin-top: 10px;">
+                        <img src="./img/SMUXploration Logo.png" alt="SMUX Connect" style="width: 50%; height: auto; margin-top: 10px;">
                     </div>
                     <blockquote>Register an account with us</blockquote>   
                     <hr class="divider-w mb-10">
@@ -84,19 +84,23 @@
                             <input class="form-control validate" id="pass" type="password" name="pass"/>
                             <label for="pass">Password</label>
                         </div>
-
                         <div class="form-group input-field">
                             <input class="form-control validate" id="cfmpass" type="password" name="cfmpass"/>
                             <label for="cfmpass">Re-enter Password</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1%">
+                            <label>
+                                <input id="alumni" type="checkbox" name="alumni"/>
+                                <span>I am an Alumni of SMUXploration Crew</a></span>
+                            </label>
                         </div>
                         <div class="form-group" style="margin-bottom: 3%">
                             <!-- Modal Trigger -->
                             <label>
                                 <input id="tnc" type="checkbox" name="tnc"/>
-                                <span>I have read the <a data-target="tncModal" class="modal-trigger smux-orange-text">Terms and Conditions</a></span>
+                                <span>I have read and accept the <a data-target="tncModal" class="modal-trigger smux-orange-text">Terms and Conditions</a></span>
                             </label>
                             
-
                             <!-- Modal Structure -->
                             <div id="tncModal" class="modal">
                                 <div class="modal-content">
@@ -135,6 +139,8 @@
                 </div>
             </div>
         </div>
+        <!--<button class="btn btn-round btn-b grey darken-3 waves-effect waves-light z-depth-0" type="button" onclick="tempPush()"  style="width: 100%">Push Data</button>-->
+
     </section>
 
     <script>

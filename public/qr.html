@@ -104,7 +104,7 @@
                             [result.substring(4)]: result
                         })
                         .then(response => {
-                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item.json?auth=' + firebaseAPIKey.API_KEY)
+                            axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item/' + sessionStorage.getItem("crewStatus") + '.json?auth=' + firebaseAPIKey.API_KEY)
                             .then(response => {
                                 const data = response.data;
                                 for (const key in data) {

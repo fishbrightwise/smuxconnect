@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body onload="getQuestion(); loggedOutCheck(); getConnectedName()" style="background-image: url('./img/Paper Background.jpg');">
+<body onload="getQuestion(); loggedOutCheck(); getConnectedName(); showQRHREF()" style="background-image: url('./img/Paper Background.jpg');">
     <ul class="sidenav" id="mySidenav">
         <li>
             <div class="user-view padding s-all-20">
@@ -32,7 +32,7 @@
             </div>
             <div class="collection s-all-20">
                 <a href="home.html" class="collection-item sidenav-close black-text">Home</a>
-                <a href="qr.html" class="collection-item sidenav-close black-text">QR Scanner</a>
+                <a href="qr.html" class="collection-item sidenav-close black-text" id="qrHREF">QR Scanner</a>
                 <a href="code.html" class="collection-item sidenav-close black-text">QR Code</a>
                 <a onclick="logout()" class="collection-item sidenav-close red-text text-darken-2">Logout</a>
         </li>

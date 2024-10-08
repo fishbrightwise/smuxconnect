@@ -156,6 +156,14 @@ function removeDefault(s) {
     elOptions[0].selected  = false;
 }
 
+async function showQRHREF() {
+    const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY);
+    console.log(response.data.inventory);
+    if (!response.data.inventory) {
+        document.getElementById('qrHREF').remove();
+    }
+}
+
 /* Simple Insert of pre-decided questions. Needs a button on a page with this js file called to activate this. */
 // function tempPush() {
 //     axios.patch('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/.json?auth=' + firebaseAPIKey.API_KEY, {

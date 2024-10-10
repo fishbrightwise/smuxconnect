@@ -27,7 +27,7 @@ async function getItems() {
                 <div class="col s6 m4 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="./img/emo${response.data.stickers[counter]}.jpg">
+                            <img src="./smux_img/${response.data.stickers[counter]}">
                         </div>
                     </div>
                 </div>`;

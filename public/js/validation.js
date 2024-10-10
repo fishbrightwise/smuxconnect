@@ -76,9 +76,25 @@ function createUser() {
         axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/item/' + crewStatus + '.json?auth=' + firebaseAPIKey.API_KEY)
         .then((response) => {
             const itemCount = Object.keys(response.data).length;
-            for (let i = 0; i < itemCount; i++) {
-                stickerArr.push(Math.floor(Math.random() * itemCount) + 1);
+            clubObj = {
+                'Bike': [1,2,3,4].sort(() => Math.random() - 0.5),
+                'Dive': [1,2,3,4].sort(() => Math.random() - 0.5),
+                'Kaya': [1,2,3,4].sort(() => Math.random() - 0.5),
+                'Skat': [1,2,3,4].sort(() => Math.random() - 0.5),
+                'Trek': [1,2,3,4].sort(() => Math.random() - 0.5),
+                'XSee': [1,2,3,4,5,6,7].sort(() => Math.random() - 0.5)
+
             }
+            let counter = 0;
+            clubCounter = 0;
+            for (let i = 0; i < itemCount; i++) {
+                stickerArr.push(`${Object.keys(clubObj)[clubCounter]}_0${clubObj[Object.keys(clubObj)[clubCounter]].shift()}.jpg`);
+                if (counter !== 0 && counter % 3 === 0) {
+                    clubCounter++;
+                }
+                counter++;
+            }
+            stickerArr = stickerArr.sort(() => Math.random() - 0.5);
             // Axios POST request
             axios.post('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user.json?auth=' + firebaseAPIKey.API_KEY, {
                 email: email,
@@ -158,7 +174,6 @@ function removeDefault(s) {
 
 async function showQRHREF() {
     const response = await axios.get('https://smux-connect-default-rtdb.asia-southeast1.firebasedatabase.app/user/' + sessionStorage.getItem("user") + '.json?auth=' + firebaseAPIKey.API_KEY);
-    console.log(response.data.inventory);
     if (!response.data.inventory) {
         document.getElementById('qrHREF').remove();
     }

@@ -6,10 +6,23 @@ async function getItems() {
 
     if (!response.data.inventory) {
         points = Object.keys(response.data.bingo).length;
+        const clubArr = [
+            './smux_img/Bike_01.jpg','./smux_img/Bike_02.jpg','./smux_img/Bike_03.jpg','./smux_img/Bike_04.jpg',
+            './smux_img/Dive_01.jpg','./smux_img/Dive_02.jpg','./smux_img/Dive_03.jpg','./smux_img/Dive_04.jpg',
+            './smux_img/Kaya_01.jpg','./smux_img/Kaya_02.jpg','./smux_img/Kaya_03.jpg','./smux_img/Kaya_04.jpg',
+            './smux_img/Skat_01.jpg','./smux_img/Skat_02.jpg','./smux_img/Skat_03.jpg','./smux_img/Skat_04.jpg',
+            './smux_img/Trek_01.jpg','./smux_img/Trek_02.jpg','./smux_img/Trek_03.jpg','./smux_img/Trek_04.jpg',
+            './smux_img/XSee_01.jpg','./smux_img/XSee_02.jpg','./smux_img/XSee_03.jpg','./smux_img/XSee_04.jpg',
+            './smux_img/XSee_05.jpg','./smux_img/XSee_06.jpg','./smux_img/XSee_07.jpg'
+        ];
+        let chosenImg = clubArr[Math.floor(Math.random() * clubArr.length)];
         document.getElementById('bingoBoard').innerHTML = `
             <div class="card">
+                <div class="card-head">
+                    <span class="card-title" style="color: white">___</span>
+                </div>
                 <div class="card-image" style="margin: 5% 5% 0 5%">
-                    <img src="./img/star.png" style="width:100%; height: auto">
+                    <img src="${chosenImg}" style="width:100%; height: auto">
                 </div>
                 <div class="card-content">
                     <p><b>Congratulations!</b> <br>You have completed the bingo board! Keep on connecting!</p>
@@ -27,7 +40,7 @@ async function getItems() {
                 <div class="col s6 m4 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="./smux_img/${response.data.stickers[counter]}">
+                            <img src="./img/SMUXie.jpg">
                         </div>
                     </div>
                 </div>`;
@@ -37,7 +50,7 @@ async function getItems() {
                 <div class="col s6 m4 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="./img/Done.png">
+                            <img src="./smux_img/${response.data.stickers[counter]}">
                         </div>
                     </div>
                 </div>`;

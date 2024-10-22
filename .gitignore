@@ -73,3 +73,5 @@ config.js
 
 # personal to-do list.
 todo.txt
+
+/.embold/

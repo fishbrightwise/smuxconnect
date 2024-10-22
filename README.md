@@ -1,6 +1,6 @@
 # SMUX Connect
 Welcome to SMUX Connect!
-This is a personal project that I have created in the hopes of having it approved for an Alumni Networking Event held by Singapore Management Universty's SMUXploration Crew.
+This is a personal project that I have created for the "SMUXie Gathering 2024" event held by Singapore Management Universty's SMUXploration Crew for its Alumnus and current members to attend, network and play bonding games with one another.
 
 ## Technologies used:
 ### Front End:
